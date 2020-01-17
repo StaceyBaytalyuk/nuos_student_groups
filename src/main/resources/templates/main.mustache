@@ -1,0 +1,94 @@
+<html>
+<body>
+
+<div></div>
+<b>Группы</b>
+<div>
+    <form method="post" action="addGroup">
+        <button type="submit">Добавить группу</button>
+        <input type="text" name="universityGroups" placeholder="Группа"/>
+    </form>
+</div>
+
+<div>
+    <form method="post" action="renameGroup">
+        <button type="submit">Переименовать группу</button>
+        <input type="text" name="oldName" placeholder="Старое имя"/>
+        <input type="text" name="newName" placeholder="Новое имя"/>
+    </form>
+</div>
+
+<div>
+    <form method="post" action="deleteGroup">
+        <button type="submit">Удалить группу</button>
+        <input type="text" name="groupName" placeholder="Группа"/>
+    </form>
+</div>
+
+<div>
+    <form method="post" action="deleteGroupById">
+        <button type="submit">Удалить группу по id</button>
+        <input type="number" name="id" placeholder="id"/>
+    </form>
+</div>
+
+<div></div>
+<b>Студенты</b>
+<div>
+    <form method="post" action="addStudent">
+        <button type="submit">Добавить студента</button>
+        <input type="text" name="studentName" placeholder="Имя"/>
+        <input type="text" name="groupName" placeholder="Группа"/>
+    </form>
+</div>
+
+<div>
+    <form method="post" action="renameStudent">
+        <button type="submit">Переименовать студента</button>
+<!--        <input type="text" name="oldName" placeholder="Старое имя"/>-->
+        <input type="number" name="id" placeholder="id"/>
+        <input type="text" name="newName" placeholder="Новое имя"/>
+    </form>
+</div>
+
+<!--<div>
+    <form method="post" action="deleteStudent">
+        <button type="submit">Удалить студента</button>
+        <input type="text" name="studentName" placeholder="Студент"/>
+    </form>
+</div>-->
+
+<div>
+    <form method="post" action="deleteStudentById">
+        <button type="submit">Удалить студента по id</button>
+        <input type="number" name="id" placeholder="id"/>
+    </form>
+</div>
+
+<b>Список групп</b>
+{{#universityGroups}}
+    <div>
+        <b>{{id}}</b>
+        <span>{{name}}</span>
+    </div>
+{{/universityGroups}}
+
+<b>Список студентов</b>
+{{#students}}
+<div>
+    <b>{{id}}</b>
+    <span>{{name}}</span>
+</div>
+{{/students}}
+
+<b>Список студентов и групп</b>
+{{#students}}
+<div>
+    <b>{{id}}</b>
+    <span>{{name}}</span>
+    <span>{{group.name}}</span>
+</div>
+{{/students}}
+
+</body>
+</html>
