@@ -27,14 +27,14 @@ public class MainController {
     }
 
     @PostMapping("addGroup")
-    public String addGroup(@RequestParam String universityGroups, Map<String, Object> model) {
-        if ( !universityGroups.isEmpty() ) {
-            if ( groupRepo.findByName(universityGroups) == null ) { // проверка на повтор имён
-                Group group = new Group(universityGroups);
+    public String addGroup(@RequestParam String groups, Map<String, Object> model) {
+        if ( !groups.isEmpty() ) {
+            if ( groupRepo.findByName(groups) == null ) { // проверка на повтор имён
+                Group group = new Group(groups);
                 groupRepo.save(group);
                 printMessage(group+" is successfully added");
             } else {
-                printMessage(universityGroups+" already exists, can't add");
+                printMessage(groups+" already exists, can't add");
             }
         } else {
             printMessage("Please, enter the name of group to add");
@@ -129,8 +129,6 @@ public class MainController {
         return "main";
     }
 
-
-    //TODO ПРОВЕРКА ПУСТЫХ ГРУПП И ИМЁН ""
     @PostMapping("addStudent")
     public String addStudent(@RequestParam String studentName, @RequestParam String groupName, Map<String, Object> model) {
         if ( (!studentName.isEmpty()) && (!groupName.isEmpty()) ) {
@@ -179,18 +177,6 @@ public class MainController {
         return "main";
     }
 
-/*    @PostMapping("deleteStudent")
-    public String deleteStudent(@RequestParam String studentName, Map<String, Object> model) {
-        Student student = studentRepo.findByName(studentName);
-        if ( student != null ) {
-            studentRepo.delete(student);
-        }
-        showAll(model);
-        return "main";
-    }*/
-
-// БЫВАЮТ ОДНОФАМИЛЬЦЫ, ПОЭТОМУ УДАЛЯТЬ ТОЛЬКО ПО id
-
     @PostMapping("deleteStudentById")
     public String deleteStudentById(@RequestParam Integer id, Map<String, Object> model) {
         if ( id != null ) {
@@ -208,11 +194,9 @@ public class MainController {
         return "main";
     }
 
-
-
     private void showAll(Map<String, Object> model) {
         Iterable<Group> groups = groupRepo.findAll();
-        model.put("universityGroups", groups);
+        model.put("groups", groups);
 
         Iterable<Student> students = studentRepo.findAll();
         model.put("students", students);
@@ -222,22 +206,6 @@ public class MainController {
         System.out.println("=================================");
         System.out.println(message);
         System.out.println("=================================");
-    }
-
-    private boolean isEmptyOldName(String name) {
-        if ( name.isEmpty() ) {
-            printMessage("Empty names are not allowed, can't rename");
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isEmptyNewName(String name) {
-        if ( name.isEmpty() ) {
-            printMessage("Can't rename to empty name");
-            return true;
-        }
-        return false;
     }
 
     private boolean isEmptyGroup(Integer id) {

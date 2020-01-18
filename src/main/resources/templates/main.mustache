@@ -6,7 +6,7 @@
 <div>
     <form method="post" action="addGroup">
         <button type="submit">Добавить группу</button>
-        <input type="text" name="universityGroups" placeholder="Группа"/>
+        <input type="text" name="groups" placeholder="Группа"/>
     </form>
 </div>
 
@@ -45,18 +45,10 @@
 <div>
     <form method="post" action="renameStudent">
         <button type="submit">Переименовать студента</button>
-<!--        <input type="text" name="oldName" placeholder="Старое имя"/>-->
         <input type="number" name="id" placeholder="id"/>
         <input type="text" name="newName" placeholder="Новое имя"/>
     </form>
 </div>
-
-<!--<div>
-    <form method="post" action="deleteStudent">
-        <button type="submit">Удалить студента</button>
-        <input type="text" name="studentName" placeholder="Студент"/>
-    </form>
-</div>-->
 
 <div>
     <form method="post" action="deleteStudentById">
@@ -66,12 +58,12 @@
 </div>
 
 <b>Список групп</b>
-{{#universityGroups}}
+{{#groups}}
     <div>
         <b>{{id}}</b>
         <span>{{name}}</span>
     </div>
-{{/universityGroups}}
+{{/groups}}
 
 <b>Список студентов</b>
 {{#students}}
